@@ -1,5 +1,6 @@
 Additional/Template.pm
 Additional/ActionLink.pm
+Additional/ActionFrame.pm
 Additional/Datefield.pm
 Additional/Included.pm
 Additional/Include.pm

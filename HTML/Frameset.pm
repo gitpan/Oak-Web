@@ -35,6 +35,8 @@ sub valid_html_attributes {
 	 "marginwidth",
 	 "marginheight",
 	 "noresize",
+	 "rows",
+	 "cols",
 	 "scrolling"
 	);
 }
