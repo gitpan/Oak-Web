@@ -51,6 +51,10 @@ This property contains the text to include as linkrel (as is, including the tag,
 
 Space for stylesheet
 
+=item expire_cookies
+
+Boolean. If set will expire all the cookies of this session
+
 =item script
 
 Space for javascript
@@ -99,7 +103,17 @@ sub message {
 
 sub start_container {
 	my $self = shift;
-	#print "Content-type: text/html\n\n";
+	my %cookies_params = $self->get_cookies_properties;
+	if ($self->get('expire_cookies')) {
+		$::SESSION->mark_all_cookies;
+		$cookies_params{"-expires"} = "-1d";
+	}
+	my $ar_cookies = $::SESSION->get_cookies(%cookies_params);
+	$ar_cookies ||= [];
+	foreach my $c (@{$ar_cookies}) {
+		print "Set-Cookie: $c\n";
+	}
+	print "Content-type: text/html\n\n";
 	print "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"\n";
         print "  \"http://www.w3.org/TR/html4/strict.dtd\">\n";
 	print "<HTML";
@@ -121,6 +135,20 @@ sub start_container {
 
 sub end_container {
 	print "</HTML>\n";
+}
+
+=over
+
+=item get_cookies_properties
+
+Return a HASH with the default properties of the cookies
+
+=back
+
+=cut;
+
+sub get_cookies_properties {
+	()
 }
 
 1;

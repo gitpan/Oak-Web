@@ -6,6 +6,7 @@ Makefile.PL
 Page.pm
 README
 Visual.pm
+Session.pm
 HTML/Acronym.pm
 HTML/A.pm
 HTML/Abbr.pm

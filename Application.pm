@@ -33,6 +33,9 @@ components. Receives the mode of operation, that can be CGI or FCGI
 The request must have the "__owa_origin__" parameter to distinguish
 which toplevel component to use.
 
+The function run creates a Oak::Web::Session object in $::SESSION.
+You can use it to set session attributes.
+
 =back
 
 =cut
@@ -48,7 +51,9 @@ sub run {
 		$class = "CGI";
 	}
 	eval "require $class" || throw Oak::Web::Application::Error::BrokenDependencies;
+	require Oak::Web::Session;
 	while (1) {
+		$::SESSION = new Oak::Web::Session;
 		my $cgi;
 		if ($mode eq "FCGI") {
 			$cgi = new CGI::Fast;
@@ -71,6 +76,7 @@ sub run {
 			$self->emergency($cgi, $error);
 		};
 		$self->freeAllTopLevel;
+		$::SESSION = undef;
 		last if $mode eq "CGI";
 	}
 }
