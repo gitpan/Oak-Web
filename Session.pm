@@ -40,7 +40,7 @@ sub constructor {
 	require CGI::Cookie;
 	my %cookies = fetch CGI::Cookie;
 	foreach (keys %cookies) {
-		$self->set($_->name => $_->value);
+		$self->set($cookies{$_}->name => $cookies{$_}->value);
 	}		
 	return $self->SUPER::constructor(@_);
 }

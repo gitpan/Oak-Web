@@ -24,6 +24,9 @@ If the input is of the radio type, another properties are used:
 radiogroup: This property defines which radiogroup this radio belongs.
 label: The text after the input
 
+If the input is of the file type, another property is used:
+filehandle: returns the filehandle to the uploaded file
+
 =head1 EVENTS
 
 ev_onChange: When the content of the input changes
@@ -37,11 +40,18 @@ sub receive_cgi {
 	my $self = shift;
 	my $cgi = shift;
 	my $oldtext = $self->get('value');
-	if ($self->get('type') !~ /(button|submit|reset|image|radio)/) {
+	if ($self->get('type') !~ /(button|submit|reset|image|radio|file)/) {
 		$self->set('value' => $cgi->param($self->get('name')));
 		if ($oldtext ne $self->get('value')) {
 			$self->{__events__}{ev_onChange} = 1;
 		}
+	} elsif ($self->get('type') =~ /file/) {
+		$self->set('value' => $cgi->param($self->get('name')));
+		if ($oldtext ne $self->get('value')) {
+			$self->{__events__}{ev_onChange} = 1;
+		}
+		my $fh = $cgi->upload($self->get('name'));
+		$self->set('filehandle' => $fh);
 	} elsif ($self->get('type') =~ /image/) {
 		if ($cgi->param($self->get('name').'x')) {
 			$self->{__events__}{ev_onClick} = 1;
