@@ -102,8 +102,17 @@ sub message {
 		}
 		try {
 			foreach my $k ($self->list_childs) {
-				my $child = $self->get_child($k);
-				$child->dispatch_all;
+				my $child;
+				my $r = eval {
+					$child = $self->get_child($k);
+					return 1;
+				};
+				if (!$r) {
+					warn "Component $k was hard-freed";
+					next;
+				} else {
+					$child->dispatch_all;
+				}
 			}
 		} catch Oak::Web::Page::Error::Syntax with {
 			my $err = shift;
@@ -203,7 +212,7 @@ Return a HASH with the default properties of the cookies
 
 =back
 
-=cut;
+=cut
 
 sub get_cookies_properties {
 	()

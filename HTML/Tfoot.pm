@@ -29,8 +29,8 @@ sub valid_html_attributes {
 	 $self->core_attributes,
 	 $self->i18n_attributes,
 	 $self->events_attributes,
-	 $self->cellhalign,
-	 $self->cellvalign
+	 $self->cellhalign_attributes,
+	 $self->cellvalign_attributes
 	);
 }
 

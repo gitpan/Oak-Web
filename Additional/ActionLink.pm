@@ -68,28 +68,6 @@ sub receive_cgi {
 
 
 
-sub valid_html_attributes {
-	my $self = shift;
-	(
-	 $self->core_attributes,
-	 $self->i18n_attributes,
-	 $self->events_attributes,
-	 "charset",
-	 "type",
-	 "name",
-	 "href",
-	 "hreflang",
-	 "rel",
-	 "rev",
-	 "accesskey",
-	 "shape",
-	 "coords",
-	 "tabindex",
-	 "onfocus",
-	 "onblur"
-  	);
-}
-
 sub start_container {
 	my $self = shift;
 	$self->set
@@ -99,13 +77,7 @@ sub start_container {
 	   '?__owa_origin__='.$self->{__owner__}->get('name').'&'.
 	   $self->get('name').'=true&'.$self->get('params')
 	  );
-	print "<A";
-	print $self->print_html_attributes;
-	print ">\n";
-}
-
-sub end_container {
-	print "</A>\n";
+	$self->SUPER::start_container;
 }
 
 1;

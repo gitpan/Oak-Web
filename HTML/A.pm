@@ -38,6 +38,7 @@ sub valid_html_attributes {
 	 "name",
 	 "href",
 	 "hreflang",
+	 "target",
 	 "rel",
 	 "rev",
 	 "accesskey",
