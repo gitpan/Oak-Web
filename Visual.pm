@@ -78,32 +78,6 @@ sub check_syntax {
 
 =over
 
-=item dispatch
-
-This method will see if any event must be started by this component.
-I.e.: if a submit button was clicked, test if there is an event for
-this button and then launch the event.
-This method must not be overrided. To dispatch an event, just set
-$self->{__events__}{EVENTNAME} = 1, and this function will automatically
-dispatch the event.
-
-=back
-
-=cut
-
-sub dispatch {
-	my $self = shift;
-	$self->{__events__} ||= {};
-	foreach my $ev (keys %{$self->{__events__}}) {
-		if ($self->get($ev)) {
-			eval $self->get($ev);	
-		}
-	}
-	return 1;
-}
-
-=over
-
 =item valid_html_attributes
 
 This function returns an array with all the properties that can be used
@@ -247,9 +221,7 @@ when you implement a visual component, try to call SUPER.
 
 sub show {
 	my $self = shift;
-	if ($self->get('ev_onShow')) {
-		eval $self->get('ev_onShow');	
-	}
+	$self->dispatch('ev_onShow');
 	return 1;
 }
 

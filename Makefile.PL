@@ -7,7 +7,7 @@ my $mm = new MM
    ABSTRACT => "Perl Oak Component Tree - Web modules",
    NAME => "Oak::Web",
    PMLIBDIRS => ['Additional','HTML'],
-   VERSION => "1.1",
+   VERSION => "1.2",
    PREREQ_PM   =>
    {
     'Oak::Object' => '0',

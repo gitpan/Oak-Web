@@ -61,6 +61,22 @@ Space for javascript
 
 =back
 
+=head1 EVENTS
+
+=over
+
+=item ev_onSyntaxError
+
+This event is launched when some "check_syntax" has failed.  If you do syntax check, you probably
+wants to define this event.
+
+=item ev_onUncaughtError
+
+This event is launched when some error occours when dispatching the events of the child components.
+If this is not set and an uncaught error occours, the error will be propagated.
+
+=back
+
 =head1 METHODS
 
 =over
@@ -83,21 +99,63 @@ sub message {
 		foreach my $k ($self->list_childs) {
 			my $child = $self->get_child($k);
 			$child->receive_cgi($cgi);
-			try {
-				$child->check_syntax;
-			} otherwise {
-				$err = 1;
-				$child->set('hasError' => 1);
-			}
 		}
-		if (!$err) {
+		try {
 			foreach my $k ($self->list_childs) {
 				my $child = $self->get_child($k);
-				$child->dispatch;
+				$child->dispatch_all;
 			}
-		} else {
-			$self->show;
+		} catch Oak::Web::Page::Error::Syntax with {
+			my $err = shift;
+			if ($self->get('ev_onSyntaxError')) {
+				$self->dispatch('ev_onSyntaxError');
+			} else {
+				throw $err;
+			}
+		} otherwise {
+			my $err = shift;
+			if ($self->get('ev_onUncaughtError')) {
+				$self->dispatch('ev_onUncaughtError');
+			} else {
+				throw $err;
+			}
+		};
+	}
+	return 1;
+}
+
+=over
+
+=item check_syntax(NAME,NAME,NAME,NAME)
+
+Check the syntax of the components.
+If some exception occours, the name of the
+component that generated the exception will be added
+in $self->{__ERRORS__}{name} = {error} and a
+Oak::Web::Page::Error::Syntax will be thrown.
+
+=back
+
+=cut
+
+sub check_syntax {
+	my $self = shift;
+	my @names = shift;
+	my $err = 0;
+	foreach my $k (@names) {
+		my $child = $self->get_child($k);
+		try {
+			$child->check_syntax;
+		} otherwise {
+			my $e = shift;
+			$err = 1;
+			$self->{__ERRORS__}{$k} = $e->stringify;
 		}
+	}
+	if ($err) {
+		throw Oak::Web::Page::Error::Syntax;
+	} else {
+		return 1;
 	}
 }
 
@@ -149,6 +207,27 @@ Return a HASH with the default properties of the cookies
 
 sub get_cookies_properties {
 	()
+}
+
+=head1 EXCEPTIONS
+
+The following exceptions are introduced by Oak::Component
+
+=over
+
+=item Oak::Web::Page::Error::Syntax
+
+This error is thrown by check_syntax telling that some test was wrong.
+
+=back
+
+=cut
+
+package Oak::Web::Page::Error::Syntax;
+use base qw (Error);
+
+sub stringify {
+	return "Syntax Error";
 }
 
 1;

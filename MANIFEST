@@ -1,4 +1,9 @@
 Additional/Template.pm
+Additional/ActionLink.pm
+Additional/Datefield.pm
+Additional/Included.pm
+Additional/Include.pm
+Additional/UsernameField.pm
 Application.pm
 Container.pm
 MANIFEST

@@ -66,7 +66,9 @@ sub run {
 		try {
 			if ($origin) {
 				$self->initiateTopLevel($origin);
-				eval '$::TL::'.$origin.'->message(POST => $cgi)';
+				unless (eval '$::TL::'.$origin.'->message(POST => $cgi)') {
+					Error::prior()->throw;
+				}
 			} else {
 				$self->initiateTopLevel($self->get('default'));
 				$::TL::default->show;
