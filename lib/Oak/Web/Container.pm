@@ -6,7 +6,7 @@ use base qw(Oak::Web::Visual);
 
 =head1 NAME
 
-Oak::Visual - Superclass for all web containers
+Oak::Web::Container - Superclass for all web containers
 
 =head1 DESCRIPTION
 
@@ -42,6 +42,9 @@ The content of the tag. Printed before the start_row.
 =item show
 
 Overrided to call the show method of all the components it has inside it.
+
+Any component that define a grid_width property will cause the container
+to skip the next columns according to the defined value.
 
 =back
 
@@ -83,13 +86,16 @@ sub show {
 	$self->start_container;
 	print $self->get('content');
 	for (my $y = 0;$y <= $maxy; $y++) {
-		$self->start_row;
+		$self->start_row($placement[$y]);
 		for (my $x = 0; $x <= $maxx; $x++) {
-			$self->start_column;
+			$self->start_column($placement[$y][$x]);
 			$placement[$y][$x]->show if
 			  exists $placement[$y][$x] and
 			    ref $placement[$y][$x];
-			$self->end_column;
+			$self->end_column($placement[$y][$x]);
+			if (exists $placement[$y][$x] && defined $placement[$y][$x] && $placement[$y][$x]->get("grid_width") > 1) {
+				$x += ($placement[$y][$x]->get("grid_width") - 1);
+			}
 			$self->between_columns if $x <= $maxx - 1;
 		}
 		$self->end_row;
@@ -115,9 +121,10 @@ sub start_container {
 
 =over
 
-=item start_row
+=item start_row($line)
 
 Show the html before the first column in one row
+receives an array reference with the columns in this line
 
 =back
 
@@ -129,9 +136,10 @@ sub start_row {
 
 =over
 
-=item start_column
+=item start_column($component)
 
 Show the html before the component in this row
+receives the component that will be shown in this column
 
 =back
 

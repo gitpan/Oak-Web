@@ -60,8 +60,10 @@ sub run {
 		my $cgi;
 		if ($mode eq "FCGI") {
 			$cgi = new CGI::Fast;
+			last unless $cgi;
 		} else {
 			$cgi = new CGI;
+			last unless $cgi;
 		}
  		my $origin = $cgi->param('__owa_origin__');
 		$self->{topLevels} ||= {};
@@ -88,7 +90,7 @@ sub run {
 		};
 		$self->freeAllTopLevel;
 		$::SESSION = undef;
-		last if $mode eq "CGI";
+		last unless $mode eq "FCGI";
 	}
 }
 
