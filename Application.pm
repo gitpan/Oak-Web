@@ -1,45 +1,32 @@
 package Oak::Web::Application;
 
 use strict;
+use Error qw(:try);
 use base qw(Oak::Application);
 
 =head1 NAME
 
 Oak::Application - Class for creating applications in Oak
 
-=head1 SYNOPSIS
-
-  my $app = new Oak::Web::Application
-    (
-     "MyApp::page1" => "page1.xml",
-     "MyApp::page2" => "page2.xml",
-     "MyApp::page3" => "page3.xml",
-     "default" => "MyApp::page1"
-    );
-
-  $app->run(mode => CGI);
-
-  # OR
-
-  $app->run(mode => FCGI);
-
-  # OR
-
-  $app->run;			# will use mode => FCGI
-
 =head1 DESCRIPTION
 
 This is the class that will be used to create real applications,
 the executable file will launch it.
 
+=head1 HIERARCHY
+
+  Oak::Object
+  Oak::Application
+  Oak::Web::Application
+
 =head1 METHODS
 
 =over
 
-=item run
+=item run(MODE)
 
 Runs the application, receives the requests and pass to the toplevel
-components.
+components. Receives the mode of operation, that can be CGI or FCGI
 
   Oak::Web::Application generates the message (POST => $cgiobj)
 
@@ -61,14 +48,41 @@ sub run {
 		$class = "CGI";
 	}
 	eval "require $class" || throw Oak::Web::Application::Error::BrokenDependencies;
-	while (my $cgi = $class->new) {
-		my $origin = $cgi->param('__owa_origin__');
-		if (eval 'die unless defined $::TL::'.$origin) {
-			eval '$::TL::'.$origin.'->message(POST => $cgi)';
+	while (1) {
+		my $cgi;
+		if ($mode eq "FCGI") {
+			$cgi = new CGI::Fast;
 		} else {
-			$::TL::default->message(POST => $cgi);
+			$cgi = new CGI;
 		}
+ 		my $origin = $cgi->param('__owa_origin__');
+		$self->{topLevels} ||= {};
+		$Error::Debug = 1;
+		try {
+			if ($origin) {
+				$self->initiateTopLevel($origin);
+				eval '$::TL::'.$origin.'->message(POST => $cgi)';
+			} else {
+				$self->initiateTopLevel($self->get('default'));
+				$::TL::default->show;
+			}
+		} otherwise {
+			my $error = shift;
+			$self->emergency($cgi, $error);
+		};
+		$self->freeAllTopLevel;
+		last if $mode eq "CGI";
 	}
+}
+
+sub emergency {
+	my $self = shift;
+	my $cgi = shift;
+	my $exception = shift;
+	print "Content-type: text/plain\n\n";
+	print "Uncaught exception: ".$exception->stringify."\n";
+	print "Stack trace follows:\n";
+	print $exception->stacktrace;
 }
 
 =head1 EXCEPTIONS
@@ -97,9 +111,25 @@ sub stringify {
 
 __END__
 
-=head1 BUGS
+=head1 EXAMPLES
 
-Too early to determine. :)
+  my $app = new Oak::Web::Application
+    (
+     "formCreate" => ["MyApp::TopLevel1", "TopLevel1.xml"],
+     "formList" => ["MyApp::TopLevel2", "TopLevel2.xml"],
+     "formSearch" => ["MyApp::TopLevel3", "TopLevel3.xml"],
+     "default" => "formCreate"
+    );
+
+  $app->run(mode => CGI);
+
+  # OR
+
+  $app->run(mode => FCGI);
+
+  # OR
+
+  $app->run;			# will use mode => FCGI
 
 =head1 COPYRIGHT
 
