@@ -10,12 +10,18 @@ Oak::Web::HTML::Bdo - Bdo HTML tag (Container)
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::Bdo
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::Bdo|Oak::Web::HTML::Bdo>
+
 
 =head1 PROPERTIES
 

@@ -14,12 +14,18 @@ Insert an ACRONYM tag with some text inside
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::PhraseElement
-  Oak::Web::HTML::Acronym
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::PhraseElement|Oak::Web::HTML::PhraseElement>
+
+L<Oak::Web::HTML::Acronym|Oak::Web::HTML::Acronym>
+
 
 =head1 PROPERTIES
 

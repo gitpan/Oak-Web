@@ -5,10 +5,12 @@ Additional/Datefield.pm
 Additional/Included.pm
 Additional/Include.pm
 Additional/UsernameField.pm
+Additional/SimpleList.pm
 Application.pm
 Container.pm
 MANIFEST
 Makefile.PL
+TopLevel.pm
 Page.pm
 README
 Visual.pm

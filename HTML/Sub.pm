@@ -10,11 +10,16 @@ Oak::Web::HTML::Sub - SUB HTML Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Sub
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Sub|Oak::Web::HTML::Sub>
+
 
 =head1 PROPERTIES
 

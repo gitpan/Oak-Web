@@ -17,12 +17,17 @@ The type of the input *is* text.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Input
-  Oak::Web::Additional::UsernameField
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Input|Oak::Web::HTML::Input>
+
+L<Oak::Web::Additional::UsernameField|Oak::Web::Additional::UsernameField>
 
 =head1 PROPERTIES
 

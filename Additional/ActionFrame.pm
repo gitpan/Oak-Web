@@ -14,12 +14,18 @@ A frame that dispatch an ev_onLoad.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Frame
-  Oak::Web::Additional::ActionFrame
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Frame|Oak::Web::HTML::Frame>
+
+L<Oak::Web::Additional::ActionFrame|Oak::Web::Additional::ActionFrame>
+
 
 =head1 PROPERTIES
 

@@ -10,11 +10,16 @@ Oak::Web::HTML::Dt - DT HTML Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Dt
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Dt|Oak::Web::HTML::Dt>
+
 
 =head1 PROPERTIES
 

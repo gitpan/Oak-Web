@@ -10,12 +10,18 @@ Oak::Web::HTML::Ol - OL HTML tag (Container)
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::Ol
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::Ol|Oak::Web::HTML::Ol>
+
 
 =head1 PROPERTIES
 

@@ -10,11 +10,16 @@ Oak::Web::HTML::Textarea - A textarea component
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Textarea
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Textarea|Oak::Web::HTML::Textarea>
+
 
 =head1 PROPERTIES
 

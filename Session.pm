@@ -16,8 +16,10 @@ it will be available during the rest of the session.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Web::Session
+L<Oak::Object|Oak::Object>
+
+L<Oak::Web::Session|Oak::Web::Session>
+
 
 =head1 PROPERTIES
 

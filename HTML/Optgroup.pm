@@ -10,12 +10,18 @@ Oak::Web::HTML::Optgroup - A optgroup component
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::Optgroup
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::Optgroup|Oak::Web::HTML::Optgroup>
+
 
 =head1 PROPERTIES
 

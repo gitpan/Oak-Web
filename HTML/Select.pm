@@ -10,12 +10,18 @@ Oak::Web::HTML::Select - A Select component
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::Select
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::Select|Oak::Web::HTML::Select>
+
 
 =head1 PROPERTIES
 

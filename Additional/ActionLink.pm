@@ -15,13 +15,20 @@ This link will be received and will dispatch an event in Oak.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::A
-  Oak::Web::Additional::ActionLink
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::A|Oak::Web::HTML::A>
+
+L<Oak::Web::Additional::ActionLink|Oak::Web::Additional::ActionLink>
+
 
 =head1 PROPERTIES
 

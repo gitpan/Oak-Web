@@ -2,7 +2,7 @@ package Oak::Web::Additional::Included;
 
 use strict;
 use Error qw(:try);
-use base qw(Oak::Web::Page);
+use base qw(Oak::Web::TopLevel);
 
 =head1 NAME
 
@@ -16,21 +16,22 @@ start_container and the end_container methods to print nothing.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::Page
-  Oak::Web::Additional::Included
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::TopLevel|Oak::Web::TopLevel>
+
+L<Oak::Web::Additional::Included|Oak::Web::Additional::Included>
+
 
 =cut
-
-sub start_container {
-}
-
-sub end_container {
-}
 
 1;
 

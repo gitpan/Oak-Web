@@ -10,11 +10,16 @@ Oak::Web::HTML::Frame - A frame Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Frame
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Frame|Oak::Web::HTML::Frame>
+
 
 =head1 PROPERTIES
 

@@ -10,12 +10,18 @@ Oak::Web::HTML::Kbd - KBD HTML Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::PhraseElement
-  Oak::Web::HTML::Kbd
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::PhraseElement|Oak::Web::HTML::PhraseElement>
+
+L<Oak::Web::HTML::Kbd|Oak::Web::HTML::Kbd>
+
 
 =head1 PROPERTIES
 

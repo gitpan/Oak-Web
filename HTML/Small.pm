@@ -10,12 +10,18 @@ Oak::Web::HTML::Small - SMALL HTML Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::PhraseElement
-  Oak::Web::HTML::Small
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::PhraseElement|Oak::Web::HTML::PhraseElement>
+
+L<Oak::Web::HTML::Small|Oak::Web::HTML::Small>
+
 
 =head1 PROPERTIES
 

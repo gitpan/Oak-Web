@@ -10,12 +10,18 @@ Oak::Web::HTML::Samp - SAMP HTML Tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::PhraseElement
-  Oak::Web::HTML::Samp
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::PhraseElement|Oak::Web::HTML::PhraseElement>
+
+L<Oak::Web::HTML::Samp|Oak::Web::HTML::Samp>
+
 
 =head1 PROPERTIES
 

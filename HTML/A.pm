@@ -14,12 +14,18 @@ A Container to hold objects inside an A tag
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Container
-  Oak::Web::HTML::A
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::A|Oak::Web::HTML::A>
+
 
 =head1 PROPERTIES
 
@@ -54,7 +60,7 @@ sub start_container {
 	my $self = shift;
 	print "<A";
 	print $self->print_html_attributes;
-	print ">\n";
+	print ">";
 }
 
 sub end_container {

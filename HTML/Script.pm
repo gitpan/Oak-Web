@@ -10,11 +10,16 @@ Oak::Web::HTML::Script - SCRIPT HTML tag (Visual)
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Script
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Script|Oak::Web::HTML::Script>
+
 
 =head1 PROPERTIES
 

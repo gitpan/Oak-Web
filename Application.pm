@@ -15,9 +15,12 @@ the executable file will launch it.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Application
-  Oak::Web::Application
+L<Oak::Object|Oak::Object>
+
+L<Oak::Application|Oak::Application>
+
+L<Oak::Web::Application|Oak::Web::Application>
+
 
 =head1 METHODS
 
@@ -28,7 +31,8 @@ the executable file will launch it.
 Runs the application, receives the requests and pass to the toplevel
 components. Receives the mode of operation, that can be CGI or FCGI
 
-  Oak::Web::Application generates the message (POST => $cgiobj)
+L<Oak::Web::Application generates the message (POST =|Oak::Web::Application generates the message (POST => $cgiobj)>
+
 
 The request must have the "__owa_origin__" parameter to distinguish
 which toplevel component to use.
@@ -67,7 +71,13 @@ sub run {
 			if ($origin) {
 				$self->initiateTopLevel($origin);
 				unless (eval '$::TL::'.$origin.'->message(POST => $cgi)') {
-					Error::prior()->throw;
+					if ($@) {
+						if (my $err = Error::prior) {
+							$err->throw
+						} else {
+							throw Error::Simple($@);
+						}
+					}
 				}
 			} else {
 				$self->initiateTopLevel($self->get('default'));

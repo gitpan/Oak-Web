@@ -10,11 +10,16 @@ Oak::Web::HTML::Style - STYLE HTML tag (Visual)
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Style
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Style|Oak::Web::HTML::Style>
+
 
 =head1 PROPERTIES
 

@@ -15,11 +15,16 @@ can be show in the order you config and with the separator you choose.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Additional::Datefield
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Additional::Datefield|Oak::Web::Additional::Datefield>
+
 
 =head1 PROPERTIES
 

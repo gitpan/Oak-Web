@@ -10,11 +10,16 @@ Oak::Web::HTML::Radiogrroup - A virtual component to hold radio inputs
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Radiogroup
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Radiogroup|Oak::Web::HTML::Radiogroup>
+
 
 =head1 PROPERTIES
 

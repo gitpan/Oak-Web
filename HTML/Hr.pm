@@ -10,11 +10,16 @@ Oak::Web::HTML::Hr - HR HTML tag (Visual)
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::HTML::Hr
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::HTML::Hr|Oak::Web::HTML::Hr>
+
 
 =head1 PROPERTIES
 

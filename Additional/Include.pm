@@ -18,11 +18,16 @@ be declared at the creation of the Oak::Web::Application.
 
 =head1 HIERARCHY
 
-  Oak::Object
-  Oak::Persistent
-  Oak::Component
-  Oak::Web::Visual
-  Oak::Web::Additional::Include
+L<Oak::Object|Oak::Object>
+
+L<Oak::Persistent|Oak::Persistent>
+
+L<Oak::Component|Oak::Component>
+
+L<Oak::Web::Visual|Oak::Web::Visual>
+
+L<Oak::Web::Additional::Include|Oak::Web::Additional::Include>
+
 
 =head1 PROPERTIES
 
