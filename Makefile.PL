@@ -4,31 +4,18 @@ my $mm = new MM
  (
   {
    AUTHOR => "Daniel Ruoso <daniel\@ruoso.com>",
-   ABSTRACT => "Perl Oak Component Tree - Web modules",
+   ABSTRACT => "Perl Oak Component Tree",
    NAME => "Oak::Web",
-   PMLIBDIRS => ['Additional','HTML'],
-   VERSION => "1.3-r2",
-   PREREQ_PM   =>
+   VERSION => "1.7",
+   PREREQ_PM => 
    {
+    'Oak::Component'   => '0',
     'Oak::Object' => '0',
-    'CGI' => '0'
+    'Time::Local' => '0',
+    'CGI' => '0',
+    'CGI::Cookie' => '0',
    }
   }
  );
 
 $mm->flush;
-
-# I had to overwrite this function, because this
-# is a package and not just a module.
-
-sub MM::init_main {
-	package MM; # so that "SUPER" works right
-	my $self = shift;
-	my $return = $self->SUPER::init_main();
-	$self->{NAME}="Oak::Web";
-	$self->{PARENT_NAME}="Oak::Web";
-	$self->{BASEEXT}="";
-	return $return;
-}
-
-

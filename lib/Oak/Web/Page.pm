@@ -69,6 +69,8 @@ Space for javascript
 
 =back
 
+=head1 METHODS
+
 =cut
 
 sub start_container {

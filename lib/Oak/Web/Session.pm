@@ -42,7 +42,7 @@ sub constructor {
 	require CGI::Cookie;
 	my %cookies = fetch CGI::Cookie;
 	foreach (keys %cookies) {
-		$self->set($cookies{$_}->name => $cookies{$_}->value);
+		$self->SUPER::set($cookies{$_}->name => $cookies{$_}->value);
 	}		
 	return $self->SUPER::constructor(@_);
 }
@@ -96,8 +96,10 @@ This can be usefull to expire all the cookies of this session.
 
 sub mark_all_cookies {
 	my $self = shift;
-	$self->{__MODIFIED_COOKIES__} ||= [];
-	@{$self->{__MODIFIED_COOKIES__}} = $self->get_property_array;
+	$self->{__MODIFIED_COOKIES__} ||= {};
+	foreach my $k ($self->get_property_array) {
+		$self->{__MODIFIED_COOKIES__}{$k} = 1;
+	}
 	return 1;
 }
 
@@ -111,9 +113,11 @@ sub set {
 sub _modified_cookies {
 	my $self = shift;
 	my @params = @_;
-	$self->{__MODIFIED_COOKIES__} ||= [];
-	@{$self->{__MODIFIED_COOKIES__}} = (@{$self->{__MODIFIED_COOKIES__}},@params);
-	return @{$self->{__MODIFIED_COOKIES__}};
+	$self->{__MODIFIED_COOKIES__} ||= {};
+	foreach my $k (@params) {
+		$self->{__MODIFIED_COOKIES__}{$k} = 1;
+	}
+	return keys %{$self->{__MODIFIED_COOKIES__}};
 }
 
 1;

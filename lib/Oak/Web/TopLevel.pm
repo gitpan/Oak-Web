@@ -31,6 +31,11 @@ L<Oak::Web::TopLevel|Oak::Web::TopLevel>
 
 =over
 
+=item ev_onMessage
+
+This event is fired just before the receive_cgi...
+The CGI object is available at $self->{__cgi__} during this event.
+
 =item ev_onSyntaxError
 
 This event is launched when some "check_syntax" has failed.  If you do syntax check, you probably
@@ -62,6 +67,9 @@ sub message {
 	if ($parms{POST}) {
 		my $cgi = $parms{POST};
 		my $err = 0;
+		$self->{__cgi__} = $cgi;
+		$self->dispatch('ev_onMessage');
+		delete $self->{__cgi__};
 		foreach my $k ($self->list_childs) {
 			my $child = $self->get_child($k);
 			$child->receive_cgi($cgi);
@@ -82,11 +90,9 @@ sub message {
 			}
 		} catch Oak::Web::TopLevel::Error::Syntax with {
 			my $err = shift;
-			if ($self->get('ev_onSyntaxError')) {
-				$self->dispatch('ev_onSyntaxError');
-			} else {
-				throw $err;
-			}
+			$self->dispatch('ev_onSyntaxError');
+			$self->{BAG} = {} unless ref $self->{BAG} eq "HASH";
+			$self->show(%{$self->{BAG}});
 		} otherwise {
 			my $err = shift;
 			if ($self->get('ev_onUncaughtError')) {
@@ -97,6 +103,26 @@ sub message {
 		};
 	}
 	return 1;
+}
+
+=over
+
+=item show(%BAG)
+
+This method is overrided to allow a Oak::Web::Page to optionally receive
+a BAG that will be saved in the $self->{BAG} variable.
+
+=back
+
+=cut
+
+sub show {
+	my $self = shift;
+	my %BAG = @_;
+	if (%BAG) {
+		$self->{BAG} = \%BAG;
+	}
+	return $self->SUPER::show;
 }
 
 =over

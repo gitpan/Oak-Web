@@ -35,13 +35,9 @@ The Oak::Web::Additional::Include has the following properties
 
 =over
 
-=item xml_filename
+=item page
 
-Where is the xml file of the included toplevel.
-
-=item classname
-
-The classname of the component
+The page (declared into the application) to be showed
 
 =back
 
@@ -49,12 +45,14 @@ The classname of the component
 
 sub show {
 	my $self = shift;
+	my @params = @_;
 	$self->SUPER::show;
-	my $comp = $self->get('classname')->new
-	  (
-	   RESTORE_TOPLEVEL => $self->get('xml_filename')
-	  );
-	$comp->show;
+	my $name = $self->get("page");
+	my $object;
+	if ($name && $::APPLICATION) {
+		$::APPLICATION->initiateTopLevel($name);
+		eval '\$::TL::'.$name.'->show';
+	}
 }
 
 1;

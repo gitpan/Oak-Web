@@ -50,6 +50,10 @@ The url of this web application
 
 Another params (in URL encoded format) to add to the link
 
+=item origin
+
+The __owa_origin__ param, defaults to $self->{__owner__}->get("name").
+
 =back
 
 =head1 EVENTS
@@ -77,11 +81,12 @@ sub receive_cgi {
 
 sub start_container {
 	my $self = shift;
+	my $orig = $self->get('origin') || $self->{__owner__}->get('name');
 	$self->set
 	  (
 	   'href' =>
 	   $self->get('application').
-	   '?__owa_origin__='.$self->{__owner__}->get('name').'&'.
+	   '?__owa_origin__='.$orig.'&'.
 	   $self->get('name').'=true&'.$self->get('params')
 	  );
 	$self->SUPER::start_container;

@@ -45,7 +45,7 @@ sub receive_cgi {
 	my $self = shift;
 	my $cgi = shift;
 	my $oldtext = $self->get('value');
-	if ($self->get('type') !~ /(button|submit|reset|image|radio|file)/) {
+	if ($self->get('type') !~ /(button|submit|reset|image|radio|file|checkbox)/) {
 		$self->set('value' => $cgi->param($self->get('name')));
 		if ($oldtext ne $self->get('value')) {
 			$self->{__events__}{ev_onChange} = 1;
@@ -58,13 +58,17 @@ sub receive_cgi {
 		my $fh = $cgi->upload($self->get('name'));
 		$self->set('filehandle' => $fh);
 	} elsif ($self->get('type') =~ /image/) {
-		if ($cgi->param($self->get('name').'x')) {
+		if ($cgi->param($self->get('name').'.x')) {
 			$self->{__events__}{ev_onClick} = 1;
 			$self->set
 			  (
-			   "x" => $cgi->param($self->get('name').'x'),
-			   "y" => $cgi->param($self->get('name').'y')
+			   "x" => $cgi->param($self->get('name').'.x'),
+			   "y" => $cgi->param($self->get('name').'.y')
 			  )
+		}
+	} elsif ($self->get('type') =~ /checkbox/) {
+		if ($cgi->param($self->get('name'))) {
+			$self->set("checked" => 1);
 		}
 	} else {
 		if ($cgi->param($self->get('name'))) {
@@ -126,7 +130,6 @@ sub show {
 		print " ".$self->get('label');
 		$self->{__properties__}{name} = $oldname;
 	}
-	print "\n";
 }
 
 1;

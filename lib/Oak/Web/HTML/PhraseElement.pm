@@ -1,12 +1,12 @@
-package Oak::Web::HTML::H;
+package Oak::Web::HTML::PhraseElement;
 
 use strict;
 use Error qw(:try);
-use base qw(Oak::Web::Visual);
+use base qw(Oak::Web::Container);
 
 =head1 NAME
 
-Oak::Web::HTML::H - Base for Header components
+Oak::Web::HTML::PhraseElement - Base for PhraseElements (defined by W3C)
 
 =head1 HIERARCHY
 
@@ -18,22 +18,23 @@ L<Oak::Component|Oak::Component>
 
 L<Oak::Web::Visual|Oak::Web::Visual>
 
-L<Oak::Web::HTML::H|Oak::Web::HTML::H>
+L<Oak::Web::Container|Oak::Web::Container>
+
+L<Oak::Web::HTML::PhraseElement|Oak::Web::HTML::PhraseElement>
 
 
 =head1 PROPERTIES
 
-The Oak::Web::HTML::H object has the following properties:
+The Oak::Web::HTML::PhraseElement object has the following properties:
 
 =over
 
-=item level
+=item type
 
-The level of the header, from 1 to 6.
+One of:
 
-=item caption
-
-The text inside the tag
+  EM | STRONG | DFN | CODE | SAMP | KBD | VAR | CITE | ABBR | ACRONYM
+  TT | I | B | BIG | SMALL
 
 =item All other defined by W3C.
 
@@ -49,17 +50,21 @@ sub valid_html_attributes {
 	(
 	 $self->core_attributes,
 	 $self->i18n_attributes,
-	 $self->events_attributes,
-	 "align"
+	 $self->events_attributes
 	);
 }
 
-sub show {
+sub start_container {
 	my $self = shift;
 	$self->SUPER::show;
-	print "<H".($self->get('level') || "1");
+	print "<".$self->get('type');
 	$self->print_html_attributes;
-	print ">".$self->get('caption')."</H".($self->get('level') || "1").">\n";
+	print ">";
+}
+
+sub end_container {
+	my $self = shift;
+	print "</".$self->get('type').">";
 }
 
 1;

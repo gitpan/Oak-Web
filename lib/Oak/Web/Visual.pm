@@ -205,10 +205,27 @@ Automatically print all the valid html attributes
 sub print_html_attributes {
 	my $self = shift;
 	foreach my $p ($self->valid_html_attributes) {
-		if ($self->get($p)) {
+		if (defined $self->get($p)) {
 			print " ".$p."=\"".$self->get($p)."\"";
 		}
 	}
+}
+
+=over
+
+=item mark_error
+
+Call this method when there is a syntax error on your component.
+This method defines the class of the component to error. Define
+this class in your css.
+
+=back
+
+=cut
+
+sub mark_error {
+	my $self = shift;
+	$self->set(class => "error");
 }
 
 =over

@@ -31,8 +31,7 @@ L<Oak::Web::Application|Oak::Web::Application>
 Runs the application, receives the requests and pass to the toplevel
 components. Receives the mode of operation, that can be CGI or FCGI
 
-L<Oak::Web::Application generates the message (POST =|Oak::Web::Application generates the message (POST => $cgiobj)>
-
+  Oak::Web::Application generates the message (POST => $cgiobj)
 
 The request must have the "__owa_origin__" parameter to distinguish
 which toplevel component to use.

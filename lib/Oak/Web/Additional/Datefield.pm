@@ -106,6 +106,7 @@ sub check_syntax {
 			   $y-1900
 			  );
 		} or do {
+			$self->mark_error;
 			throw Oak::Web::Additional::Datefield::Error::InvalidDate;
 		};
 		return 1;
@@ -116,6 +117,7 @@ sub _createSubInputs {
 	my $self = shift;
 	require Oak::Web::HTML::Input;
 	my ($y, $m, $d) = split(/-/, $self->get('date'));
+	my $class = $self->get('class');
 	my $yinput = new Oak::Web::HTML::Input
 	  (
 	   OWNER => $self,
@@ -126,6 +128,7 @@ sub _createSubInputs {
 	    name => $self->get('name')."____year____",
 	    size => 4,
 	    maxlenght => 4,
+	    class => $class
 	   }
 	  );
 	my $minput = new Oak::Web::HTML::Input
@@ -138,6 +141,7 @@ sub _createSubInputs {
 	    name => $self->get('name')."____month____",
 	    size => 2,
 	    maxlenght => 2,
+	    class => $class
 	   }
 	  );
 	my $dinput = new Oak::Web::HTML::Input
@@ -150,6 +154,7 @@ sub _createSubInputs {
 	    name => $self->get('name')."____day____",
 	    size => 2,
 	    maxlenght => 2,
+	    class => $class
 	   }
 	  );
 	return ($yinput, $minput, $dinput)

@@ -2,7 +2,7 @@ package Oak::Web::Additional::UsernameField;
 
 use strict;
 use Error qw(:try);
-use base qw(Oak::Web::HTML::Input);
+use base qw(Oak::Web::Additional::MaskedInput);
 
 =head1 NAME
 
@@ -27,6 +27,8 @@ L<Oak::Web::Visual|Oak::Web::Visual>
 
 L<Oak::Web::HTML::Input|Oak::Web::HTML::Input>
 
+L<Oak::Web::Additional::MaskedInput|Oak::Web::Additional::MaskedInput>
+
 L<Oak::Web::Additional::UsernameField|Oak::Web::Additional::UsernameField>
 
 =head1 PROPERTIES
@@ -46,28 +48,10 @@ sub constructor {
 	my %params = @_;
 	if (ref $params{RESTORE} eq "HASH") {
 		$params{RESTORE}{size} ||= "8";
+		$params{RESTORE}{mask} = '^[a-zA-Z0-9\.\_\-]+$';
+		$params{RESTORE}{type} = 'text';
 	}
 	$self->SUPER::constructor(%params);
-}
-
-sub show {
-	my $self = shift;
-	$self->set('type' => 'text');
-	$self->SUPER::show;
-}
-
-sub check_syntax {
-	my $self = shift;
-	if (!$self->get('value') && $self->get('required')) {
-		throw Oak::Error::ParamsMissing;
-	} elsif (!$self->get('value') && !$self->get('required')) {
-		return 1;
-	} else {
-		if ($username =~ /[^a-zA-Z0-9\.\_\-]/) {
-			throw Oak::Web::Additional::UsernameField::Error::InvalidUsername;
-		}
-		return 1;
-	}
 }
 
 =head1 EXCEPTIONS
