@@ -35,7 +35,6 @@ sub valid_html_attributes {
 
 sub start_container {
 	my $self = shift;
-	$self->SUPER::show;
 	print "<P";
 	$self->print_html_attributes;
 	print ">";
