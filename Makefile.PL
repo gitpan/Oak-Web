@@ -6,5 +6,5 @@ WriteMakefile
    ABSTRACT => "Perl Oak Component Tree - Web modules",
    NAME => "Oak::Web",
    NORECURS => 1,
-   VERSION => "0.1"
+   VERSION => "0.2"
   );
